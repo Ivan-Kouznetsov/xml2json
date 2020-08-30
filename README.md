@@ -1,6 +1,5 @@
 # xml2json
-This function acts as an XML to JSON converter. The function is extremely small and is in pure JavaScript, therefore it has no dependencies. 
-The converter takes XML attributes into consideration. 
+A minimal dependency-free TypeScript XML to JSON parser. 
 ## Installation
 ```
 Download and use the function directly in your code!
