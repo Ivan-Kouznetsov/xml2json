@@ -82,3 +82,18 @@ export const quote = `<?xml version = "1.0" encoding = "utf-8"?>
 <?xml-stylesheet type = "text/xsl" href = "xslplanes.2.xsl" ?>
 <apo text="\\"johns\\""/>
 `;
+
+export const short = `<?xml version = "1.0" encoding = "utf-8"?>
+<?xml-stylesheet type = "text/xsl" href = "xslplanes.2.xsl" ?>
+<a b="c"/>
+`;
+
+export const short2 = `<?xml version = "1.0" encoding = "utf-8"?>
+<aa id="not parsed"><b>TEST</b></aa>`;
+
+export const short1 = `<?xml version = "1.0" encoding = "utf-8"?>
+<a id="not parsed"><b>TEST</b></a>`;
+
+export const unicode = `<?xml version = "1.0" encoding = "utf-8"?>
+<â þ="ç"/>
+`;
