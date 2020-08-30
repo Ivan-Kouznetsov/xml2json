@@ -93,4 +93,10 @@ describe('Xml to Json parser', () => {
       },
     });
   });
+
+  it('should parse apostrope', () => {
+    const obj = xml2json(fixtures.apostrophe);
+
+    expect(obj).toEqual({ apo: { text: "john's" } });
+  });
 });

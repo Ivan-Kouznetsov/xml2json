@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 export const xml2json = (xmlStr: string): object => {
-  xmlStr = cleanXML(xmlStr);
+  xmlStr = cleanXML(xmlStr); // workaround
   return xml2jsonRecurse(xmlStr);
 };
 
@@ -77,7 +77,7 @@ function replaceSelfClosingTags(xmlStr: string) {
       const closingTag = '</' + tagName + '>';
       let newTag = '<' + tagName + '>';
 
-      const attrs = tempTag.match(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g);
+      const attrs = tempTag.match(/(\S+)="?((?:.(?!"?\s+(?:\S+)=|[>"]))+.)"?/g);
 
       if (attrs) {
         for (let j = 0; j < attrs.length; j++) {
