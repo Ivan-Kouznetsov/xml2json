@@ -72,3 +72,13 @@ export const complex = `<?xml version="1.0"?>
       </catalog_item>
    </product>
 </catalog>`;
+
+export const apostrophe = `<?xml version = "1.0" encoding = "utf-8"?>
+<?xml-stylesheet type = "text/xsl" href = "xslplanes.2.xsl" ?>
+<apo text="john's"/>
+`;
+
+export const quote = `<?xml version = "1.0" encoding = "utf-8"?>
+<?xml-stylesheet type = "text/xsl" href = "xslplanes.2.xsl" ?>
+<apo text="\\"johns\\""/>
+`;

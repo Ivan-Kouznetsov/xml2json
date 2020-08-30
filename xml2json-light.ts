@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 export const xml2json = (xmlStr: string): object => {
-  xmlStr = cleanXML(xmlStr);
+  xmlStr = cleanXML(xmlStr); // workaround
   return xml2jsonRecurse(xmlStr);
 };
 
@@ -65,6 +65,9 @@ function cleanXML(xmlStr: string) {
  * @param xmlStr XML string
  */
 function replaceSelfClosingTags(xmlStr: string) {
+  const escQuote = '__ESCAPED_QUOTE__';
+  const escQuoteRegex = new RegExp(`${escQuote}`, 'g');
+
   const selfClosingTags = xmlStr.match(/<[^/][^>]*\/>/g);
 
   if (selfClosingTags) {
@@ -76,8 +79,8 @@ function replaceSelfClosingTags(xmlStr: string) {
       const tagName = oldTag.match(/[^<][\w+$]*/)[0];
       const closingTag = '</' + tagName + '>';
       let newTag = '<' + tagName + '>';
-
-      const attrs = tempTag.match(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g);
+      tempTag = tempTag.replace(/\\"/g, escQuote);
+      const attrs = tempTag.match(/(\S+)="?((?:.(?!"?\s+(?:\S+)=|[>"]))+.)"?/g);
 
       if (attrs) {
         for (let j = 0; j < attrs.length; j++) {
@@ -85,7 +88,7 @@ function replaceSelfClosingTags(xmlStr: string) {
           const attrName = attr.substring(0, attr.indexOf('='));
           const attrValue = attr.substring(attr.indexOf('"') + 1, attr.lastIndexOf('"'));
 
-          newTag += '<' + attrName + '>' + attrValue + '</' + attrName + '>';
+          newTag += '<' + attrName + '>' + attrValue.replace(escQuoteRegex, '"') + '</' + attrName + '>';
         }
       }
 
