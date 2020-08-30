@@ -105,4 +105,28 @@ describe('Xml to Json parser', () => {
 
     expect(obj).toEqual({ apo: { text: '"johns"' } });
   });
+
+  it('should parse short names', () => {
+    const obj = xml2json(fixtures.short);
+
+    expect(obj).toEqual({ a: { b: 'c' } });
+  });
+
+  it('should parse attributes when tag is 2 characters', () => {
+    const obj = xml2json(fixtures.short2);
+
+    expect(obj).toEqual({ aa: { id: 'not parsed', b: 'TEST' } });
+  });
+
+  it('should parse attributes when tag is 1 character', () => {
+    const obj = xml2json(fixtures.short1);
+
+    expect(obj).toEqual({ a: { id: 'not parsed', b: 'TEST' } });
+  });
+
+  it('should parse attributes when tag is non-ASCII', () => {
+    const obj = xml2json(fixtures.unicode);
+
+    expect(obj).toEqual({ â: { þ: 'ç' } });
+  });
 });
