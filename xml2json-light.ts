@@ -65,6 +65,9 @@ function cleanXML(xmlStr: string) {
  * @param xmlStr XML string
  */
 function replaceSelfClosingTags(xmlStr: string) {
+  const escQuote = '__ESCAPED_QUOTE__';
+  const escQuoteRegex = new RegExp(`${escQuote}`, 'g');
+
   const selfClosingTags = xmlStr.match(/<[^/][^>]*\/>/g);
 
   if (selfClosingTags) {
@@ -76,7 +79,7 @@ function replaceSelfClosingTags(xmlStr: string) {
       const tagName = oldTag.match(/[^<][\w+$]*/)[0];
       const closingTag = '</' + tagName + '>';
       let newTag = '<' + tagName + '>';
-
+      tempTag = tempTag.replace(/\\"/g, escQuote);
       const attrs = tempTag.match(/(\S+)="?((?:.(?!"?\s+(?:\S+)=|[>"]))+.)"?/g);
 
       if (attrs) {
@@ -85,7 +88,7 @@ function replaceSelfClosingTags(xmlStr: string) {
           const attrName = attr.substring(0, attr.indexOf('='));
           const attrValue = attr.substring(attr.indexOf('"') + 1, attr.lastIndexOf('"'));
 
-          newTag += '<' + attrName + '>' + attrValue + '</' + attrName + '>';
+          newTag += '<' + attrName + '>' + attrValue.replace(escQuoteRegex, '"') + '</' + attrName + '>';
         }
       }
 

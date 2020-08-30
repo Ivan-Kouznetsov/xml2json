@@ -99,4 +99,10 @@ describe('Xml to Json parser', () => {
 
     expect(obj).toEqual({ apo: { text: "john's" } });
   });
+
+  it('should parse escape quote', () => {
+    const obj = xml2json(fixtures.quote);
+
+    expect(obj).toEqual({ apo: { text: '"johns"' } });
+  });
 });
