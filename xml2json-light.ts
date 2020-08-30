@@ -139,14 +139,12 @@ function replaceAttributes(xmlStr: string) {
       let newTag = '<' + tagName + '>';
       const attrs = oldTag.match(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g);
 
-      if (attrs) {
-        for (let j = 0; j < attrs.length; j++) {
-          const attr = attrs[j];
-          const attrName = attr.substring(0, attr.indexOf('='));
-          const attrValue = attr.substring(attr.indexOf('"') + 1, attr.lastIndexOf('"'));
+      for (let j = 0; j < attrs.length; j++) {
+        const attr = attrs[j];
+        const attrName = attr.substring(0, attr.indexOf('='));
+        const attrValue = attr.substring(attr.indexOf('"') + 1, attr.lastIndexOf('"'));
 
-          newTag += '<' + attrName + '>' + attrValue + '</' + attrName + '>';
-        }
+        newTag += '<' + attrName + '>' + attrValue + '</' + attrName + '>';
       }
 
       xmlStr = xmlStr.replace(oldTag, newTag);
