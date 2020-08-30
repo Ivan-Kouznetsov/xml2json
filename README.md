@@ -2,14 +2,9 @@
 A minimal dependency-free TypeScript XML to JSON parser. 
 ## Installation
 ```
-Download and use the function directly in your code!
+Download and use directly
 
-or
-
-npm install xml2json-light
 ```
-## Online Demo
-Here's a [JSFiddle demo](https://jsfiddle.net/enkidootech/ogsousqd/29/)
 ## Usage
 ### Without XML attributes
 ```javascript
