@@ -2,8 +2,7 @@
 A minimal dependency-free TypeScript XML to JSON parser. 
 ## Installation
 ```
-Download and use directly
-
+Download and use as a module in your code
 ```
 ## Usage
 ### Without XML attributes
